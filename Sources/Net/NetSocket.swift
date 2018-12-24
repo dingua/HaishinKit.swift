@@ -9,9 +9,9 @@ open class NetSocket: NSObject {
     public internal(set) var connected: Bool = false
     public var windowSizeC: Int = NetSocket.defaultWindowSizeC
     public var securityLevel: StreamSocketSecurityLevel = .none
-    public var totalBytesIn: Int64 = 0
-    public private(set) var totalBytesOut: Int64 = 0
-    public private(set) var queueBytesOut: Int64 = 0
+    public var totalBytesIn: Atomic<Int64> = .init(0)
+    public private(set) var totalBytesOut: Atomic<Int64> = .init(0)
+    public private(set) var queueBytesOut: Atomic<Int64> = .init(0)
 
     var inputStream: InputStream?
     var outputStream: OutputStream?
@@ -41,7 +41,7 @@ open class NetSocket: NSObject {
 
     @discardableResult
     final public func doOutput(data: Data, locked: UnsafeMutablePointer<UInt32>? = nil) -> Int {
-        OSAtomicAdd64(Int64(data.count), &queueBytesOut)
+        queueBytesOut.mutate { $0 += Int64(data.count) }
         outputQueue.async {
             data.withUnsafeBytes { (buffer: UnsafePointer<UInt8>) -> Void in
                 self.doOutputProcess(buffer, maxLength: data.count)
@@ -92,8 +92,8 @@ open class NetSocket: NSObject {
                 break
             }
             total += length
-            totalBytesOut += Int64(length)
-            OSAtomicAdd64(-Int64(length), &queueBytesOut)
+            totalBytesOut.mutate { $0 += Int64(length) }
+            queueBytesOut.mutate { $0 -= Int64(length) }
         }
     }
 
@@ -120,9 +120,9 @@ open class NetSocket: NSObject {
         buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: windowSizeC)
         buffer?.initialize(repeating: 0, count: windowSizeC)
 
-        totalBytesIn = 0
-        totalBytesOut = 0
-        queueBytesOut = 0
+        totalBytesIn.mutate { $0 = 0 }
+        totalBytesOut.mutate { $0 = 0 }
+        queueBytesOut.mutate { $0 = 0 }
         timeoutHandler = didTimeout
         inputBuffer.removeAll(keepingCapacity: false)
 
@@ -179,7 +179,7 @@ open class NetSocket: NSObject {
         }
         let length: Int = inputStream.read(buffer, maxLength: windowSizeC)
         if 0 < length {
-            totalBytesIn += Int64(length)
+            totalBytesIn.mutate { $0 += Int64(length) }
             inputBuffer.append(buffer, count: length)
             listen()
         }

@@ -430,7 +430,7 @@ final class RTMPDataMessage: RTMPMessage {
         guard let stream: RTMPStream = connection.streams[streamId] else {
             return
         }
-        OSAtomicAdd64(Int64(payload.count), &stream.info.byteCount)
+        stream.info.byteCount.mutate { $0 = Int64(payload.count)}
     }
 }
 
@@ -585,7 +585,7 @@ final class RTMPAudioMessage: RTMPMessage {
         guard let stream: RTMPStream = connection.streams[streamId] else {
             return
         }
-        OSAtomicAdd64(Int64(payload.count), &stream.info.byteCount)
+        stream.info.byteCount.mutate { $0 += Int64(payload.count) }
         guard codec.isSupported else {
             return
         }
@@ -636,7 +636,7 @@ final class RTMPVideoMessage: RTMPMessage {
         guard let stream: RTMPStream = connection.streams[streamId] else {
             return
         }
-        OSAtomicAdd64(Int64(payload.count), &stream.info.byteCount)
+        stream.info.byteCount.mutate { $0 += Int64(payload.count) }
         guard FLVTagType.video.headerSize < payload.count else {
             return
         }

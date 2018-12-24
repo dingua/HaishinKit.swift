@@ -167,11 +167,11 @@ open class RTMPConnection: EventDispatcher {
     /// The object encoding for this RTMPConnection instance.
     open var objectEncoding: UInt8 = RTMPConnection.defaultObjectEncoding
     /// The statistics of total incoming bytes.
-    open var totalBytesIn: Int64 {
+    open var totalBytesIn: Atomic<Int64> {
         return socket.totalBytesIn
     }
     /// The statistics of total outgoing bytes.
-    open var totalBytesOut: Int64 {
+    open var totalBytesOut: Atomic<Int64> {
         return socket.totalBytesOut
     }
     /// The statistics of total RTMPStream counts.
@@ -400,13 +400,13 @@ open class RTMPConnection: EventDispatcher {
     }
 
     @objc private func on(timer: Timer) {
-        let totalBytesIn: Int64 = self.totalBytesIn
-        let totalBytesOut: Int64 = self.totalBytesOut
+        let totalBytesIn: Int64 = self.totalBytesIn.value
+        let totalBytesOut: Int64 = self.totalBytesOut.value
         currentBytesInPerSecond = Int32(totalBytesIn - previousTotalBytesIn)
         currentBytesOutPerSecond = Int32(totalBytesOut - previousTotalBytesOut)
         previousTotalBytesIn = totalBytesIn
         previousTotalBytesOut = totalBytesOut
-        previousQueueBytesOut.append(socket.queueBytesOut)
+        previousQueueBytesOut.append(socket.queueBytesOut.value)
         for (_, stream) in streams {
             stream.on(timer: timer)
         }

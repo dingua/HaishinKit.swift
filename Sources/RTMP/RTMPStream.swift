@@ -3,20 +3,20 @@ import AVFoundation
  flash.net.NetStreamInfo for Swift
  */
 public struct RTMPStreamInfo {
-    public internal(set) var byteCount: Int64 = 0
+    public internal(set) var byteCount: Atomic<Int64> = .init(0)
     public internal(set) var resourceName: String?
     public internal(set) var currentBytesPerSecond: Int32 = 0
 
     private var previousByteCount: Int64 = 0
 
     mutating func on(timer: Timer) {
-        let byteCount: Int64 = self.byteCount
+        let byteCount: Int64 = self.byteCount.value
         currentBytesPerSecond = Int32(byteCount - previousByteCount)
         previousByteCount = byteCount
     }
 
     mutating func clear() {
-        byteCount = 0
+        byteCount.mutate { $0 = 0 }
         currentBytesPerSecond = 0
         previousByteCount = 0
     }
@@ -490,7 +490,7 @@ open class RTMPStream: NetStream {
                 handlerName: handlerName,
                 arguments: arguments
             )), locked: nil)
-            OSAtomicAdd64(Int64(length), &self.info.byteCount)
+            self.info.byteCount.mutate { $0 += Int64(length) }
         }
     }
 
@@ -641,7 +641,7 @@ extension RTMPStream: RTMPMuxerDelegate {
             message: RTMPAudioMessage(streamId: id, timestamp: UInt32(audioTimestamp), payload: buffer)
         ), locked: nil)
         audioWasSent = true
-        OSAtomicAdd64(Int64(length), &info.byteCount)
+        info.byteCount.mutate { $0 += Int64(length) }
         audioTimestamp = withTimestamp + (audioTimestamp - floor(audioTimestamp))
     }
 
@@ -657,7 +657,7 @@ extension RTMPStream: RTMPMuxerDelegate {
             message: RTMPVideoMessage(streamId: id, timestamp: UInt32(videoTimestamp), payload: buffer)
         ), locked: &mixer.videoIO.encoder.locked)
         videoWasSent = true
-        OSAtomicAdd64(Int64(length), &info.byteCount)
+        info.byteCount.mutate { $0 += Int64(length) }
         videoTimestamp = withTimestamp + (videoTimestamp - floor(videoTimestamp))
         frameCount += 1
     }

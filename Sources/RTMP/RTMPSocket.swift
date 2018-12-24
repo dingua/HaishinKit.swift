@@ -6,9 +6,9 @@ protocol RTMPSocketCompatible: class {
     var timestamp: TimeInterval { get }
     var chunkSizeC: Int { get set }
     var chunkSizeS: Int { get set }
-    var totalBytesIn: Int64 { get }
-    var totalBytesOut: Int64 { get }
-    var queueBytesOut: Int64 { get }
+    var totalBytesIn: Atomic<Int64> { get }
+    var totalBytesOut: Atomic<Int64> { get }
+    var queueBytesOut: Atomic<Int64> { get }
     var inputBuffer: Data { get set }
     var securityLevel: StreamSocketSecurityLevel { get set }
     var delegate: RTMPSocketDelegate? { get set }
@@ -49,9 +49,9 @@ final class RTMPSocket: NetSocket, RTMPSocketCompatible {
     var chunkSizeC: Int = RTMPChunk.defaultSize
     var chunkSizeS: Int = RTMPChunk.defaultSize
     weak var delegate: RTMPSocketDelegate?
-    override var totalBytesIn: Int64 {
+    override var totalBytesIn: Atomic<Int64> {
         didSet {
-            delegate?.didSetTotalBytesIn(totalBytesIn)
+            delegate?.didSetTotalBytesIn(totalBytesIn.value)
         }
     }
 
