@@ -18,9 +18,90 @@ public class AVMixer: NSObject {
         "continuousAutofocus",
         "continuousExposure"
     ]
-
-#if os(iOS) || os(macOS)
-
+    
+    private static let queueKey = DispatchSpecificKey<UnsafeMutableRawPointer>()
+    private static let queueValue = UnsafeMutableRawPointer.allocate(byteCount: 1, alignment: 1)
+    public let lockQueue = ({ () -> DispatchQueue in
+        let queue = DispatchQueue(label: "com.haishinkit.HaishinKit.AVMixer.lock")
+        queue.setSpecific(key: queueKey, value: queueValue)
+        return queue
+    })()
+    
+    
+    open var context: CIContext? {
+        get {
+            return videoIO.context
+        }
+        set {
+            videoIO.context = newValue
+        }
+    }
+    
+    open var audioSettings: [String: Any] {
+        get {
+            var audioSettings: [String: Any]!
+            ensureLockQueue {
+                audioSettings = self.audioIO.encoder.dictionaryWithValues(forKeys: AudioConverter.supportedSettingsKeys)
+            }
+            return  audioSettings
+        }
+        set {
+            ensureLockQueue {
+                self.audioIO.encoder.setValuesForKeys(newValue)
+            }
+        }
+    }
+    
+    open var videoSettings: [String: Any] {
+        get {
+            var videoSettings: [String: Any]!
+            ensureLockQueue {
+                videoSettings = self.videoIO.encoder.dictionaryWithValues(forKeys: H264Encoder.supportedSettingsKeys)
+            }
+            return videoSettings
+        }
+        set {
+            if DispatchQueue.getSpecific(key: AVMixer.queueKey) == AVMixer.queueValue {
+                self.videoIO.encoder.setValuesForKeys(newValue)
+            } else {
+                ensureLockQueue {
+                    self.videoIO.encoder.setValuesForKeys(newValue)
+                }
+            }
+        }
+    }
+    
+    open var captureSettings: [String: Any] {
+        get {
+            var captureSettings: [String: Any]!
+            ensureLockQueue {
+                captureSettings = self.dictionaryWithValues(forKeys: AVMixer.supportedSettingsKeys)
+            }
+            return captureSettings
+        }
+        set {
+            ensureLockQueue {
+                self.setValuesForKeys(newValue)
+            }
+        }
+    }
+    
+    open var recorderSettings: [AVMediaType: [String: Any]] {
+        get {
+            var recorderSettings: [AVMediaType: [String: Any]]!
+            ensureLockQueue {
+                recorderSettings = self.recorder.outputSettings
+            }
+            return recorderSettings
+        }
+        set {
+            ensureLockQueue {
+                self.recorder.outputSettings = newValue
+            }
+        }
+    }
+    #if os(iOS) || os(macOS)
+    
     @objc var fps: Float64 {
         get { return videoIO.fps }
         set { videoIO.fps = newValue }
@@ -100,6 +181,52 @@ public class AVMixer: NSObject {
         _audioIO = nil
         _videoIO?.dispose()
         _videoIO = nil
+    }
+    
+    func ensureLockQueue(callback: () -> Void) {
+        if DispatchQueue.getSpecific(key: AVMixer.queueKey) == AVMixer.queueValue {
+            callback()
+        } else {
+            lockQueue.sync {
+                callback()
+            }
+        }
+    }
+    
+    open func attachCamera(_ camera: AVCaptureDevice?, onError: ((_ error: NSError) -> Void)? = nil) throws {
+        lockQueue.async {
+            do {
+                try self.videoIO.attachCamera(camera)
+            } catch let error as NSError {
+                onError?(error)
+            }
+        }
+    }
+    
+    open func attachAudio(_ audio: AVCaptureDevice?, automaticallyConfiguresApplicationAudioSession: Bool = false, onError: ((_ error: NSError) -> Void)? = nil) throws {
+        lockQueue.async {
+            do {
+                try self.audioIO.attachAudio(audio, automaticallyConfiguresApplicationAudioSession: automaticallyConfiguresApplicationAudioSession)
+            } catch let error as NSError {
+                onError?(error)
+            }
+        }
+    }
+    
+    open func attachScreen(_ screen: ScreenCaptureSession?, useScreenSize: Bool = true) {
+        lockQueue.async {
+            self.videoIO.attachScreen(screen, useScreenSize: useScreenSize)
+            screen?.startRunning()
+        }
+    }
+    
+    open func deattachScreen() {
+        videoIO.screen?.stopRunning()
+    }
+    
+    open func setPointOfInterest(_ focus: CGPoint, exposure: CGPoint) {
+        videoIO.focusPointOfInterest = focus
+        videoIO.exposurePointOfInterest = exposure
     }
 }
 
