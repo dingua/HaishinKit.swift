@@ -74,7 +74,7 @@
 		294852571D852499002DE492 /* RTMPTSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294852551D84BFAD002DE492 /* RTMPTSocket.swift */; };
 		295018201FFA1BD700358E10 /* AudioConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950181F1FFA1BD700358E10 /* AudioConverterTests.swift */; };
 		295018221FFA1C9D00358E10 /* SinWaveUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295018211FFA1C9D00358E10 /* SinWaveUtil.swift */; };
-		295074301E4620FF007F15A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29205CBD1E461F4E009D3FFF /* Main.storyboard */; };
+		295074301E4620FF007F15A4 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29205CBD1E461F4E009D3FFF /* Main2.storyboard */; };
 		295074311E462105007F15A4 /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950742E1E4620B7007F15A4 /* PreferenceViewController.swift */; };
 		2955F51F1D09EBAD004CC995 /* VisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296897461CDB01D20074D5F0 /* VisualEffect.swift */; };
 		29562B881E6BFFE000BB940A /* HaishinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B8761B1CD701F900FC07DA /* HaishinKit.framework */; };
@@ -126,7 +126,6 @@
 		296897651CDB028C0074D5F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 296897421CDB01D20074D5F0 /* Assets.xcassets */; };
 		296897661CDB028C0074D5F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2968974D1CDB01DD0074D5F0 /* LaunchScreen.storyboard */; };
 		296897671CDB02940074D5F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296897411CDB01D20074D5F0 /* AppDelegate.swift */; };
-		296897681CDB02940074D5F0 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296897441CDB01D20074D5F0 /* LiveViewController.swift */; };
 		2976077F20A89FBB00DCF24F /* RTMPMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976077E20A89FBB00DCF24F /* RTMPMessageTests.swift */; };
 		2976A47E1D48C5C700B53EF2 /* AVRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976A47D1D48C5C700B53EF2 /* AVRecorder.swift */; };
 		2976A47F1D48FD6900B53EF2 /* AVRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976A47D1D48C5C700B53EF2 /* AVRecorder.swift */; };
@@ -331,6 +330,10 @@
 		29EF03781CD79A5400473D99 /* HaishinKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 299F7E3B1CD71A97001E7272 /* HaishinKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29F6F4851DFB83E200920A3A /* RTMPHandshake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F6F4841DFB83E200920A3A /* RTMPHandshake.swift */; };
 		29F6F4861DFB862400920A3A /* RTMPHandshake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F6F4841DFB83E200920A3A /* RTMPHandshake.swift */; };
+		347C150022317D8C00A97402 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347C14FE22317D8C00A97402 /* Main.storyboard */; };
+		347C150122317D8C00A97402 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347C14FF22317D8C00A97402 /* ViewController.swift */; };
+		347C150322317E4300A97402 /* RecordingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347C150222317E4300A97402 /* RecordingService.swift */; };
+		347C150522318B1600A97402 /* AppStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347C150422318B1600A97402 /* AppStateObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -473,7 +476,7 @@
 		2916196B1E7F0768009FB344 /* CMFormatDescription+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CMFormatDescription+Extension.swift"; sourceTree = "<group>"; };
 		2917CB652104CA2800F6823A /* AudioSpecificConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSpecificConfigTests.swift; sourceTree = "<group>"; };
 		291F4E361CF206E200F59C51 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		29205CBD1E461F4E009D3FFF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		29205CBD1E461F4E009D3FFF /* Main2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main2.storyboard; sourceTree = "<group>"; };
 		29245AEC1D3233EB00AFFB9A /* VideoGravityUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoGravityUtil.swift; sourceTree = "<group>"; };
 		2926A9EB1DE6B71D0074E3D2 /* MachUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachUtil.swift; sourceTree = "<group>"; };
 		2926A9F01DE6EAEB0074E3D2 /* TimerDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerDriver.swift; sourceTree = "<group>"; };
@@ -619,6 +622,10 @@
 		29EA87EF1E79A4120043A5F8 /* CMSampleTimingInfo+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CMSampleTimingInfo+Extension.swift"; sourceTree = "<group>"; };
 		29F04FF21F3388B000172706 /* HaishinKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HaishinKit.podspec; sourceTree = "<group>"; };
 		29F6F4841DFB83E200920A3A /* RTMPHandshake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPHandshake.swift; sourceTree = "<group>"; };
+		347C14FE22317D8C00A97402 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		347C14FF22317D8C00A97402 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		347C150222317E4300A97402 /* RecordingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingService.swift; sourceTree = "<group>"; };
+		347C150422318B1600A97402 /* AppStateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStateObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -960,10 +967,14 @@
 				291F4E361CF206E200F59C51 /* Icon.png */,
 				296897431CDB01D20074D5F0 /* Info.plist */,
 				2968974D1CDB01DD0074D5F0 /* LaunchScreen.storyboard */,
+				347C14FE22317D8C00A97402 /* Main.storyboard */,
+				347C150422318B1600A97402 /* AppStateObserver.swift */,
+				347C14FF22317D8C00A97402 /* ViewController.swift */,
 				296897441CDB01D20074D5F0 /* LiveViewController.swift */,
-				29205CBD1E461F4E009D3FFF /* Main.storyboard */,
+				29205CBD1E461F4E009D3FFF /* Main2.storyboard */,
 				291468161E581C7D00E619BA /* Preference.swift */,
 				2950742E1E4620B7007F15A4 /* PreferenceViewController.swift */,
+				347C150222317E4300A97402 /* RecordingService.swift */,
 				296897461CDB01D20074D5F0 /* VisualEffect.swift */,
 			);
 			path = iOS;
@@ -1347,13 +1358,11 @@
 				TargetAttributes = {
 					2915EC511D85BDF100621092 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = SUEQ2SZ2L5;
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 					2915EC5E1D85BDF100621092 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = SUEQ2SZ2L5;
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
@@ -1372,7 +1381,6 @@
 					};
 					29C9327D1CD76FB800283FC5 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = SUEQ2SZ2L5;
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
@@ -1464,9 +1472,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				291F4E381CF206E600F59C51 /* Icon.png in Resources */,
+				347C150022317D8C00A97402 /* Main.storyboard in Resources */,
 				296897651CDB028C0074D5F0 /* Assets.xcassets in Resources */,
 				296897661CDB028C0074D5F0 /* LaunchScreen.storyboard in Resources */,
-				295074301E4620FF007F15A4 /* Main.storyboard in Resources */,
+				295074301E4620FF007F15A4 /* Main2.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1830,9 +1839,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				347C150122317D8C00A97402 /* ViewController.swift in Sources */,
 				291468191E581C8F00E619BA /* Preference.swift in Sources */,
 				296897671CDB02940074D5F0 /* AppDelegate.swift in Sources */,
-				296897681CDB02940074D5F0 /* LiveViewController.swift in Sources */,
+				347C150322317E4300A97402 /* RecordingService.swift in Sources */,
+				347C150522318B1600A97402 /* AppStateObserver.swift in Sources */,
 				2955F51F1D09EBAD004CC995 /* VisualEffect.swift in Sources */,
 				295074311E462105007F15A4 /* PreferenceViewController.swift in Sources */,
 			);
@@ -2024,7 +2035,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = SUEQ2SZ2L5;
+				DEVELOPMENT_TEAM = LCXH23EWLR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -2032,7 +2043,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Examples/iOS/Screencast/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.haishinkit.HaishinKit.Example-iOS.Screencast";
+				PRODUCT_BUNDLE_IDENTIFIER = com.careem.mobile.app.icma.haishinkit.Screencast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -2048,7 +2059,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = SUEQ2SZ2L5;
+				DEVELOPMENT_TEAM = LCXH23EWLR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -2056,7 +2067,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Examples/iOS/Screencast/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.haishinkit.HaishinKit.Example-iOS.Screencast";
+				PRODUCT_BUNDLE_IDENTIFIER = com.careem.mobile.app.icma.haishinkit.Screencast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
@@ -2072,11 +2083,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = SUEQ2SZ2L5;
+				DEVELOPMENT_TEAM = LCXH23EWLR;
 				INFOPLIST_FILE = "$(SRCROOT)/Examples/iOS/ScreencastUI/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.haishinkit.HaishinKit.Example-iOS.ScreencastUI";
+				PRODUCT_BUNDLE_IDENTIFIER = com.careem.mobile.app.icma.haishinkit.ScreencastUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -2092,11 +2103,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = SUEQ2SZ2L5;
+				DEVELOPMENT_TEAM = LCXH23EWLR;
 				INFOPLIST_FILE = "$(SRCROOT)/Examples/iOS/ScreencastUI/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.haishinkit.HaishinKit.Example-iOS.ScreencastUI";
+				PRODUCT_BUNDLE_IDENTIFIER = com.careem.mobile.app.icma.haishinkit.ScreencastUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
@@ -2237,7 +2248,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-Xfrontend -debug-time-function-bodies";
-				PRODUCT_BUNDLE_IDENTIFIER = com.haishinkit.HaishinKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.careem.mobile.app.icma2.haishinkit;
 				PRODUCT_NAME = HaishinKit;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -2266,7 +2277,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.haishinkit.HaishinKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.careem.mobile.app.icma2.haishinkit;
 				PRODUCT_NAME = HaishinKit;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -2388,7 +2399,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = SUEQ2SZ2L5;
+				DEVELOPMENT_TEAM = LCXH23EWLR;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2396,10 +2407,10 @@
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Examples/iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.haishinkit.HaishinKit.Example-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.careem.mobile.app.icma.haishinkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -2413,16 +2424,16 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = SUEQ2SZ2L5;
+				DEVELOPMENT_TEAM = LCXH23EWLR;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Examples/iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.haishinkit.HaishinKit.Example-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.careem.mobile.app.icma.haishinkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
