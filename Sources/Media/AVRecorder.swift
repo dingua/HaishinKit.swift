@@ -121,6 +121,22 @@ open class AVRecorder: NSObject {
             self.pixelBufferAdaptor = nil
         }
     }
+    
+    func finishWriting(_ completion: @escaping () -> Void) {
+        guard let writer: AVAssetWriter = writer, writer.status == .writing else {
+            return
+        }
+        for (_, input) in writerInputs {
+            input.markAsFinished()
+        }
+        writer.finishWriting {
+            self.delegate?.didFinishWriting(self)
+            self.writer = nil
+            self.writerInputs.removeAll()
+            self.pixelBufferAdaptor = nil
+            completion()
+        }
+    }
 }
 
 extension AVRecorder: Running {
@@ -141,6 +157,19 @@ extension AVRecorder: Running {
                 return
             }
             self.finishWriting()
+            self.isRunning = false
+            self.delegate?.didStopRunning(self)
+        }
+    }
+    
+    public func stopRunning(_ completion: @escaping () -> Void) {
+        lockQueue.async {
+            guard self.isRunning else {
+                return
+            }
+            self.finishWriting {
+                completion()
+            }
             self.isRunning = false
             self.delegate?.didStopRunning(self)
         }
