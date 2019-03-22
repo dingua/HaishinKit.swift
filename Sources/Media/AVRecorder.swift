@@ -122,19 +122,21 @@ open class AVRecorder: NSObject {
         }
     }
     
-    func finishWriting(_ completion: @escaping () -> Void) {
+    func finishWriting(_ completion: @escaping (URL?) -> Void) {
         guard let writer: AVAssetWriter = writer, writer.status == .writing else {
             return
         }
         for (_, input) in writerInputs {
             input.markAsFinished()
         }
+        let url = writer.outputURL
+        logger.info("🚀 \(url)")
         writer.finishWriting {
             self.delegate?.didFinishWriting(self)
             self.writer = nil
             self.writerInputs.removeAll()
             self.pixelBufferAdaptor = nil
-            completion()
+            completion(url)
         }
     }
 }
@@ -162,13 +164,13 @@ extension AVRecorder: Running {
         }
     }
     
-    public func stopRunning(_ completion: @escaping () -> Void) {
+    public func stopRunning(_ completion: @escaping (URL?) -> Void) {
         lockQueue.async {
             guard self.isRunning else {
                 return
             }
-            self.finishWriting {
-                completion()
+            self.finishWriting { url in
+                completion(url)
             }
             self.isRunning = false
             self.delegate?.didStopRunning(self)
