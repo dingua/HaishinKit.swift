@@ -83,7 +83,7 @@ open class AVRecorder: NSObject {
             guard let delegate: AVRecorderDelegate = self.delegate, self.isRunning else {
                 return
             }
-
+            print("🎥 \(self.writer?.status.rawValue ?? -1)")
             delegate.rotateFile(self, withPresentationTimeStamp: withPresentationTime, mediaType: .video)
             guard
                 let writer = self.writer,
@@ -122,19 +122,21 @@ open class AVRecorder: NSObject {
         }
     }
     
-    func finishWriting(_ completion: @escaping () -> Void) {
+    func finishWriting(_ completion: @escaping (URL?) -> Void) {
         guard let writer: AVAssetWriter = writer, writer.status == .writing else {
             return
         }
         for (_, input) in writerInputs {
             input.markAsFinished()
         }
+        let url = writer.outputURL
+        logger.info("🚀 \(url)")
         writer.finishWriting {
             self.delegate?.didFinishWriting(self)
             self.writer = nil
             self.writerInputs.removeAll()
             self.pixelBufferAdaptor = nil
-            completion()
+            completion(url)
         }
     }
 }
@@ -162,13 +164,13 @@ extension AVRecorder: Running {
         }
     }
     
-    public func stopRunning(_ completion: @escaping () -> Void) {
+    public func stopRunning(_ completion: @escaping (URL?) -> Void) {
         lockQueue.async {
             guard self.isRunning else {
                 return
             }
-            self.finishWriting {
-                completion()
+            self.finishWriting { url in
+                completion(url)
             }
             self.isRunning = false
             self.delegate?.didStopRunning(self)
@@ -287,6 +289,7 @@ extension DefaultAVRecorderDelegate: AVRecorderDelegate {
     }
 
     func createWriter(_ fileName: String?) -> AVAssetWriter? {
+        print("👀 create Writer")
         do {
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "en_US")

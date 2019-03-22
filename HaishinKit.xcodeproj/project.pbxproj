@@ -330,6 +330,9 @@
 		29EF03781CD79A5400473D99 /* HaishinKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 299F7E3B1CD71A97001E7272 /* HaishinKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		29F6F4851DFB83E200920A3A /* RTMPHandshake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F6F4841DFB83E200920A3A /* RTMPHandshake.swift */; };
 		29F6F4861DFB862400920A3A /* RTMPHandshake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F6F4841DFB83E200920A3A /* RTMPHandshake.swift */; };
+		342EF9612242C6A9006608FC /* black.mov in Resources */ = {isa = PBXBuildFile; fileRef = 342EF95E2242C6A8006608FC /* black.mov */; };
+		342EF9622242C6A9006608FC /* KVVideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EF95F2242C6A8006608FC /* KVVideoManager.swift */; };
+		342EF9632242C6A9006608FC /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 342EF9602242C6A8006608FC /* silence.mp3 */; };
 		347C150022317D8C00A97402 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347C14FE22317D8C00A97402 /* Main.storyboard */; };
 		347C150122317D8C00A97402 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347C14FF22317D8C00A97402 /* ViewController.swift */; };
 		347C150322317E4300A97402 /* RecordingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347C150222317E4300A97402 /* RecordingService.swift */; };
@@ -622,6 +625,9 @@
 		29EA87EF1E79A4120043A5F8 /* CMSampleTimingInfo+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CMSampleTimingInfo+Extension.swift"; sourceTree = "<group>"; };
 		29F04FF21F3388B000172706 /* HaishinKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HaishinKit.podspec; sourceTree = "<group>"; };
 		29F6F4841DFB83E200920A3A /* RTMPHandshake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTMPHandshake.swift; sourceTree = "<group>"; };
+		342EF95E2242C6A8006608FC /* black.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = black.mov; sourceTree = "<group>"; };
+		342EF95F2242C6A8006608FC /* KVVideoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVVideoManager.swift; sourceTree = "<group>"; };
+		342EF9602242C6A8006608FC /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
 		347C14FE22317D8C00A97402 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		347C14FF22317D8C00A97402 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		347C150222317E4300A97402 /* RecordingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingService.swift; sourceTree = "<group>"; };
@@ -975,6 +981,9 @@
 				291468161E581C7D00E619BA /* Preference.swift */,
 				2950742E1E4620B7007F15A4 /* PreferenceViewController.swift */,
 				347C150222317E4300A97402 /* RecordingService.swift */,
+				342EF95E2242C6A8006608FC /* black.mov */,
+				342EF95F2242C6A8006608FC /* KVVideoManager.swift */,
+				342EF9602242C6A8006608FC /* silence.mp3 */,
 				296897461CDB01D20074D5F0 /* VisualEffect.swift */,
 			);
 			path = iOS;
@@ -1473,6 +1482,8 @@
 			files = (
 				291F4E381CF206E600F59C51 /* Icon.png in Resources */,
 				347C150022317D8C00A97402 /* Main.storyboard in Resources */,
+				342EF9632242C6A9006608FC /* silence.mp3 in Resources */,
+				342EF9612242C6A9006608FC /* black.mov in Resources */,
 				296897651CDB028C0074D5F0 /* Assets.xcassets in Resources */,
 				296897661CDB028C0074D5F0 /* LaunchScreen.storyboard in Resources */,
 				295074301E4620FF007F15A4 /* Main2.storyboard in Resources */,
@@ -1560,7 +1571,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\necho \"\"\n#swiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		29E51F2A1FEFDEB300F839F4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1841,6 +1852,7 @@
 			files = (
 				347C150122317D8C00A97402 /* ViewController.swift in Sources */,
 				291468191E581C8F00E619BA /* Preference.swift in Sources */,
+				342EF9622242C6A9006608FC /* KVVideoManager.swift in Sources */,
 				296897671CDB02940074D5F0 /* AppDelegate.swift in Sources */,
 				347C150322317E4300A97402 /* RecordingService.swift in Sources */,
 				347C150522318B1600A97402 /* AppStateObserver.swift in Sources */,
