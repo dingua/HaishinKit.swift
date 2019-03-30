@@ -333,11 +333,6 @@
 		342EF9612242C6A9006608FC /* black.mov in Resources */ = {isa = PBXBuildFile; fileRef = 342EF95E2242C6A8006608FC /* black.mov */; };
 		342EF9622242C6A9006608FC /* KVVideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EF95F2242C6A8006608FC /* KVVideoManager.swift */; };
 		342EF9632242C6A9006608FC /* silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 342EF9602242C6A8006608FC /* silence.mp3 */; };
-		342EF96722453F49006608FC /* RecordingServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EF96622453F49006608FC /* RecordingServiceProtocol.swift */; };
-		342EF96922453F6E006608FC /* RecordingAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EF96822453F6E006608FC /* RecordingAsset.swift */; };
-		342EF96B22453FC6006608FC /* CameraAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EF96A22453FC6006608FC /* CameraAsset.swift */; };
-		342EF96D22453FF3006608FC /* ScreenAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EF96C22453FF3006608FC /* ScreenAsset.swift */; };
-		342EF9702245406D006608FC /* AVRecorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342EF96F2245406D006608FC /* AVRecorderDelegate.swift */; };
 		347C150022317D8C00A97402 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 347C14FE22317D8C00A97402 /* Main.storyboard */; };
 		347C150122317D8C00A97402 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347C14FF22317D8C00A97402 /* ViewController.swift */; };
 		347C150322317E4300A97402 /* RecordingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347C150222317E4300A97402 /* RecordingService.swift */; };
@@ -633,11 +628,6 @@
 		342EF95E2242C6A8006608FC /* black.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = black.mov; sourceTree = "<group>"; };
 		342EF95F2242C6A8006608FC /* KVVideoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVVideoManager.swift; sourceTree = "<group>"; };
 		342EF9602242C6A8006608FC /* silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = silence.mp3; sourceTree = "<group>"; };
-		342EF96622453F49006608FC /* RecordingServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingServiceProtocol.swift; sourceTree = "<group>"; };
-		342EF96822453F6E006608FC /* RecordingAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingAsset.swift; sourceTree = "<group>"; };
-		342EF96A22453FC6006608FC /* CameraAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAsset.swift; sourceTree = "<group>"; };
-		342EF96C22453FF3006608FC /* ScreenAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAsset.swift; sourceTree = "<group>"; };
-		342EF96F2245406D006608FC /* AVRecorderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVRecorderDelegate.swift; sourceTree = "<group>"; };
 		347C14FE22317D8C00A97402 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		347C14FF22317D8C00A97402 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		347C150222317E4300A97402 /* RecordingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingService.swift; sourceTree = "<group>"; };
@@ -976,7 +966,6 @@
 		2968973F1CDB01AD0074D5F0 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				342EF96422453F10006608FC /* RecordingService */,
 				29A39C801D85BEFA007C27E9 /* Screencast */,
 				29A39C811D85BF07007C27E9 /* ScreencastUI */,
 				296897411CDB01D20074D5F0 /* AppDelegate.swift */,
@@ -991,6 +980,10 @@
 				29205CBD1E461F4E009D3FFF /* Main2.storyboard */,
 				291468161E581C7D00E619BA /* Preference.swift */,
 				2950742E1E4620B7007F15A4 /* PreferenceViewController.swift */,
+				347C150222317E4300A97402 /* RecordingService.swift */,
+				342EF95E2242C6A8006608FC /* black.mov */,
+				342EF95F2242C6A8006608FC /* KVVideoManager.swift */,
+				342EF9602242C6A8006608FC /* silence.mp3 */,
 				296897461CDB01D20074D5F0 /* VisualEffect.swift */,
 			);
 			path = iOS;
@@ -1154,38 +1147,6 @@
 				29D8067F204828D000F4504D /* VTSession+Extension.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		342EF96422453F10006608FC /* RecordingService */ = {
-			isa = PBXGroup;
-			children = (
-				342EF96E22454019006608FC /* KVVideoManager */,
-				342EF96522453F32006608FC /* protocols */,
-				347C150222317E4300A97402 /* RecordingService.swift */,
-				342EF96A22453FC6006608FC /* CameraAsset.swift */,
-				342EF96C22453FF3006608FC /* ScreenAsset.swift */,
-				342EF96F2245406D006608FC /* AVRecorderDelegate.swift */,
-			);
-			path = RecordingService;
-			sourceTree = "<group>";
-		};
-		342EF96522453F32006608FC /* protocols */ = {
-			isa = PBXGroup;
-			children = (
-				342EF96622453F49006608FC /* RecordingServiceProtocol.swift */,
-				342EF96822453F6E006608FC /* RecordingAsset.swift */,
-			);
-			path = protocols;
-			sourceTree = "<group>";
-		};
-		342EF96E22454019006608FC /* KVVideoManager */ = {
-			isa = PBXGroup;
-			children = (
-				342EF95E2242C6A8006608FC /* black.mov */,
-				342EF95F2242C6A8006608FC /* KVVideoManager.swift */,
-				342EF9602242C6A8006608FC /* silence.mp3 */,
-			);
-			path = KVVideoManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1891,15 +1852,10 @@
 			files = (
 				347C150122317D8C00A97402 /* ViewController.swift in Sources */,
 				291468191E581C8F00E619BA /* Preference.swift in Sources */,
-				342EF9702245406D006608FC /* AVRecorderDelegate.swift in Sources */,
-				342EF96722453F49006608FC /* RecordingServiceProtocol.swift in Sources */,
 				342EF9622242C6A9006608FC /* KVVideoManager.swift in Sources */,
-				342EF96D22453FF3006608FC /* ScreenAsset.swift in Sources */,
 				296897671CDB02940074D5F0 /* AppDelegate.swift in Sources */,
 				347C150322317E4300A97402 /* RecordingService.swift in Sources */,
-				342EF96922453F6E006608FC /* RecordingAsset.swift in Sources */,
 				347C150522318B1600A97402 /* AppStateObserver.swift in Sources */,
-				342EF96B22453FC6006608FC /* CameraAsset.swift in Sources */,
 				2955F51F1D09EBAD004CC995 /* VisualEffect.swift in Sources */,
 				295074311E462105007F15A4 /* PreferenceViewController.swift in Sources */,
 			);
