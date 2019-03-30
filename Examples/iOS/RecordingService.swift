@@ -28,8 +28,6 @@ protocol RecordingServiceProtocol {
     func setup()
     func startRecording()
     func stopRecording(_ completion: @escaping (_ recordingOutput: RecordingOutput) -> ())
-    func pause(_ completion: @escaping () -> ())
-    func resume()
 }
 
 enum AssetType {
@@ -156,46 +154,15 @@ class RecordingService: RecordingServiceProtocol {
                 
                 if !self.cameraMixer.isRunning && !self.recordScreenMixer.isRunning {
                     
-                    let mergeDispatchGroup = DispatchGroup()
                     var cameraURL: URL?
                     var screenURL: URL?
                     print("👀 camera videos \(self.cameraVideos.count)")
-                    if self.cameraVideos.isEmpty == false {
-                        
-                        mergeDispatchGroup.enter()
-                        
-                        self.cameraVideoManager.merge(arrayVideos: self.cameraVideos.compactMap { AVAsset(url: $0) }) { url, error in
-                            
-                            guard error == nil else { return }
-                            
-                            cameraURL = url
-                            
-                            mergeDispatchGroup.leave()
-                            //                            completion(RecordingOutput(cameraFileURL: self.cameraOutputURL, screenFileURL: self.screenOutputURL))
-                        }
-                    }
+                    cameraURL = self.cameraVideos.first
+                    screenURL = self.screenVideos.first
                     
-                    if self.screenVideos.isEmpty == false  {
-                        
-                        mergeDispatchGroup.enter()
-                        
-                        self.screenVideoManager.merge(arrayVideos: self.screenVideos.compactMap { AVAsset(url: $0) }) { url, error in
-                            
-                            guard error == nil else { return }
-                            
-                            screenURL = url
-                            
-                            mergeDispatchGroup.leave()
-                            //                            completion(RecordingOutput(cameraFileURL: self.cameraOutputURL, screenFileURL: self.screenOutputURL))
-                        }
-                    }
-                    
-                    mergeDispatchGroup.notify(queue: DispatchQueue.main) {
-                        
-                        self.saveToPhotos(cameraURL)
-                        self.saveToPhotos(screenURL)
-                        completion(RecordingOutput(cameraFileURL: cameraURL, screenFileURL: screenURL))
-                    }
+                    self.saveToPhotos(cameraURL)
+                    self.saveToPhotos(screenURL)
+                    completion(RecordingOutput(cameraFileURL: cameraURL, screenFileURL: screenURL))
                 }
             }
             
@@ -217,72 +184,6 @@ class RecordingService: RecordingServiceProtocol {
             }
         })
     }
-    
-    // HACK: Due to limitation for now pausing just save the recorded input to disk
-    // When it comes to uploading we have to upload the multiple session videos created between
-    // the start and the end of recording
-    func pause(_ completion: @escaping () -> ()) {
-        
-        let dispatchGroup = DispatchGroup()
-        
-        switch mode {
-        case .cameraAndScreen:
-            dispatchGroup.enter()
-            self.cameraMixer.recorder.stopRunning() { url in
-                if let url = url {
-                    print("👀 video url \(url)")
-                    self.cameraVideos.append(url)
-                }
-                dispatchGroup.leave()
-            }
-            
-            dispatchGroup.enter()
-            self.recordScreenMixer.recorder.stopRunning() { url in
-                if let url = url {
-                    print("👀 screen url \(url)")
-                    self.screenVideos.append(url)
-                }
-                dispatchGroup.leave()
-            }
-            
-        case .camera:
-            dispatchGroup.enter()
-            self.cameraMixer.recorder.stopRunning() { url in
-                if let url = url {
-                    self.cameraVideos.append(url)
-                }
-                dispatchGroup.leave()
-            }
-            
-        case .screen:
-            dispatchGroup.enter()
-            self.recordScreenMixer.recorder.stopRunning() { url in
-                if let url = url {
-                    print("👀 screen url \(url)")
-                    self.screenVideos.append(url)
-                }
-                dispatchGroup.leave()
-            }
-        }
-        
-        dispatchGroup.notify(queue: DispatchQueue.main) {
-            completion()
-        }
-    }
-    
-    func resume() {
-        
-        switch self.mode {
-        case .cameraAndScreen:
-            self.cameraMixer.recorder.startRunning()
-            self.recordScreenMixer.recorder.startRunning()
-        case .camera:
-            self.cameraMixer.recorder.startRunning()
-        case .screen:
-            self.recordScreenMixer.recorder.startRunning()
-        }
-    }
-    
     
     // - MARK: Private
     

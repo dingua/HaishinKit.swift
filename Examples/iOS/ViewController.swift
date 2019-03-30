@@ -70,30 +70,10 @@ class ViewController: UIViewController {
                         UIApplication.shared.endBackgroundTask(task)
                         task = .invalid
                     })
-                    
-                    self.pause() {
-                        UIApplication.shared.endBackgroundTask(task)
-                        task = .invalid
-                    }
                 }
             }
             
-        }, willEnterForeground: {
-            if self.isRecording {
-                self.resume()
-            }
-        })
-    }
-    
-    private func pause(_ completion: @escaping () -> ()) {
-        
-        recordingService.pause() {
-            completion()
-        }
-    }
-    
-    private func resume() {
-        recordingService.resume()
+        }, willEnterForeground: {})
     }
     
     private func configureTouchVisualizer() {
