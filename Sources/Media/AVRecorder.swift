@@ -83,7 +83,7 @@ open class AVRecorder: NSObject {
             guard let delegate: AVRecorderDelegate = self.delegate, self.isRunning else {
                 return
             }
-
+            print("🎥 \(self.writer?.status.rawValue ?? -1)")
             delegate.rotateFile(self, withPresentationTimeStamp: withPresentationTime, mediaType: .video)
             guard
                 let writer = self.writer,
@@ -289,6 +289,7 @@ extension DefaultAVRecorderDelegate: AVRecorderDelegate {
     }
 
     func createWriter(_ fileName: String?) -> AVAssetWriter? {
+        print("👀 create Writer")
         do {
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "en_US")
